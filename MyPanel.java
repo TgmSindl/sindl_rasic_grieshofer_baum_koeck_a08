@@ -1,6 +1,7 @@
 package sindl_rasic_grieshofer_baum_koeck_a08;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -20,9 +21,10 @@ public class MyPanel extends JPanel{
 		buttons = new JButton[25];
 		restart = new JButton("restart");
 		for(int i = 0;i<25;i++){
-			buttons[i] = new JButton(""+i);
+			buttons[i] = new JButton();
 			buttons[i].addActionListener(null);
 			panel1.add(buttons[i]);
+			buttons[i].setBackground(Color.black);
 		}
 		this.add(panel1,BorderLayout.CENTER);
 		this.add(restart,BorderLayout.NORTH);
