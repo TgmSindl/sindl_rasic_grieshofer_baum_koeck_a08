@@ -3,6 +3,7 @@ package sindl_rasic_grieshofer_baum_koeck_a08;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
@@ -34,18 +35,21 @@ public class MyPanel extends JPanel{
         restart.addActionListener(control);
         
         buttons = new JToggleButton[5][5];  //5*5 = 25 Felder
-        JToggleButton temp;
+        JToggleButton temp = null;
         for (int i = 0; i < buttons.length; i++) {    
             for (int j = 0; j < buttons[i].length; j++) {
                 temp = new JToggleButton();
                 temp.addActionListener(control);
-                temp.setBackground(Color.black);
-                
+                temp.setBackground(Color.black);                
                 panel1.add(temp);   //wird dem Panel hinzugefügt
                 buttons[i][j]=temp; //in Array speichern fuer Berechnungen
             }
         }
 
+		int r =(int) (buttons.length*Math.random());
+		int a =(int) (buttons.length*Math.random());
+		buttons[r][a].setSelected(true); //Es wird ein zufaelliges Feld aktiviert
+		
         this.setLayout(new BorderLayout());
         this.add(panel1, BorderLayout.CENTER);
         this.add(restart, BorderLayout.SOUTH);
