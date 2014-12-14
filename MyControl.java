@@ -32,12 +32,17 @@ public class MyControl implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		Object source = e.getSource();
 
-		if(source.equals(panel.getRestart())){
+		if(source.equals(panel.getRestart())){	
 			for (int i = 0; i < panel.getButtons().length; i++) {    
 				for (int j = 0; j < panel.getButtons()[i].length; j++) {
 					panel.getButtons()[i][j].setSelected(false);
 				}
 			}
+			int r =(int) (panel.getButtons().length*Math.random());
+			int a =(int) (panel.getButtons().length*Math.random());
+			panel.getButtons()[r][a].setSelected(true);
+
+			
 		}else if(source instanceof JToggleButton){
 			int[] pos = findButton((JToggleButton) source);
 			if(pos==null){
