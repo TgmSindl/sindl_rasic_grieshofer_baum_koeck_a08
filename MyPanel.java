@@ -3,35 +3,46 @@ package sindl_rasic_grieshofer_baum_koeck_a08;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
-public class MyPanel extends JPanel implements ActionListener {
+/**
+ * Panel Klasse, hier werden die Buttons erstellt und dem Panel hinzugef�gt.
+ * 
+ * @author Jakob Grieshofer, David Sindl
+ */
+public class MyPanel extends JPanel{
 
+	private MyControl control;
     private JToggleButton[][] buttons;
     private JButton restart;
     private JPanel panel1;
 
-    public MyPanel() {
+    /**
+     * Konstruktor
+     * Panels und Buttons werden erstellt und dem Hauptpanel hinzugef�gt.
+     * @param control
+     */
+    public MyPanel(MyControl control) {
+    	this.control = control;
+    	
         panel1 = new JPanel();
         panel1.setLayout(new GridLayout(5, 5));
 
         restart = new JButton("RESTART");
-        restart.addActionListener(this);
+        restart.addActionListener(control);
         
-        buttons = new JToggleButton[5][5];  //5*5 = 25
+        buttons = new JToggleButton[5][5];  //5*5 = 25 Felder
         JToggleButton temp;
-        for (int i = 0; i < buttons.length; i++) {    //füllt das array, egal wie lange es ist
+        for (int i = 0; i < buttons.length; i++) {    
             for (int j = 0; j < buttons[i].length; j++) {
                 temp = new JToggleButton();
-                temp.addActionListener(this);
+                temp.addActionListener(control);
                 temp.setBackground(Color.black);
                 
-                panel1.add(temp);   //auf panel hinzufügen
-                buttons[i][j]=temp; //in array speichern für berechnungen
+                panel1.add(temp);   //wird dem Panel hinzugef�gt
+                buttons[i][j]=temp; //in Array speichern fuer Berechnungen
             }
         }
 
@@ -41,6 +52,20 @@ public class MyPanel extends JPanel implements ActionListener {
     }
 
     /**
+	 * @return the restart
+	 */
+	public JButton getRestart() {
+		return restart;
+	}
+
+	/**
+	 * @param restart the restart to set
+	 */
+	public void setRestart(JButton restart) {
+		this.restart = restart;
+	}
+
+	/**
      * @return
      */
     public JToggleButton[][] getButtons() {
@@ -52,66 +77,6 @@ public class MyPanel extends JPanel implements ActionListener {
      */
     public void setButtons(JToggleButton[][] buttons) {
         this.buttons = buttons;
-    }
-    
-    @Override
-    public void actionPerformed(ActionEvent e){
-        Object source = e.getSource();
-        
-        if(source.equals(restart)){
-            for (int i = 0; i < buttons.length; i++) {    //füllt das array, egal wie lange es ist
-                for (int j = 0; j < buttons[i].length; j++) {
-                    buttons[i][j].setSelected(false);
-                }
-            }
-        }else if(source instanceof JToggleButton){
-            int[] pos = findButton((JToggleButton) source);
-            if(pos==null){
-                System.err.println("Button nicht gefunden!");
-                return;
-            }
-
-            int y = pos[0];
-            int x = pos[1];
-
-            if(x>0){
-                toggle(buttons[y][x-1]);
-            }
-            if(x<buttons.length-1){
-                toggle(buttons[y][x+1]);
-            }
-            if(y>0){
-                toggle(buttons[y-1][x]);
-            }
-            if(y<buttons[x].length-1){
-                toggle(buttons[y+1][x]);
-            }
-        }
-    }
-    
-    /**
-     * sucht den angegebenen button im buttons[][] und gibt die position als int[] zurück
-     * @param button
-     * @return 
-     */
-    private int[] findButton(JToggleButton button){
-        for (int i = 0; i < buttons.length; i++) {
-            for (int j = 0; j < buttons[i].length; j++) {
-//                System.out.println(buttons[i][j].toString()+".equals("+button.toString()+");");   //debug ausgabe
-                if(buttons[i][j].equals(button)){
-                    return new int[]{i,j};
-                }
-            }    
-        }
-        
-        return null;
-    }
-    
-    /**
-     * ändert den zustand des buttons auf das gegenteil
-     * @param button 
-     */
-    private void toggle(JToggleButton button){
-            button.setSelected(!button.isSelected());
-    }
+    }  
+ 
 }
