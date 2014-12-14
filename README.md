@@ -6,10 +6,9 @@ Repository - Sindl
 
 Programm
 
-    Grieshofer - GUI, Starter
-    Sindl - Util
-    Rasic - Objekte
+    Grieshofer - GUI, Starter, Kommentare
+    Sindl - der Rest
 
-ReadMe - Baum
+ReadMe - 
 
-Protokoll - Baum, Köck
+Protokoll - Köck
