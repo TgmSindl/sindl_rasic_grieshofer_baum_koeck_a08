@@ -62,8 +62,11 @@ public class MyControl implements ActionListener{
 			if(y<panel.getButtons()[x].length-1){
 				toggle(panel.getButtons()[y+1][x]);
 			}
+			
+			panel.checkWin();
 		}
 	}
+	
 	
 	/**
 	 * Findet Button 
@@ -97,4 +100,3 @@ public class MyControl implements ActionListener{
 		new MyControl();
 	}
 }
-
