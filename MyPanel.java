@@ -60,7 +60,23 @@ public class MyPanel extends JPanel{
          }
     }
     
-    	/**
+    /**
+     * Wenn kein Feld mehr aktiviert ist wird ein Dialog angezeigt dass das Spiel gewonnen wrude
+     */
+    public void checkWin(){
+    	int counter = 0;
+			for (int i = 0; i < buttons.length; i++) {    
+	            for (int j = 0; j < buttons[i].length; j++){
+	            	if(buttons[i][j].isSelected()==false){
+	            		counter++;
+	            		if(counter==25){
+	            		JOptionPane.showMessageDialog(null, "You Won!");
+	            		}
+	            	}
+	            }
+		}
+	}
+    /**
 	 * @return the restart
 	 */
 	public JButton getRestart() {
@@ -89,3 +105,4 @@ public class MyPanel extends JPanel{
     }  
  
 }
+
