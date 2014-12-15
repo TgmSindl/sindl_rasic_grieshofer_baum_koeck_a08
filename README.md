@@ -8,7 +8,7 @@ Programm
 
     Grieshofer - GUI, Starter, Kommentare
     Sindl - der Rest
-    Rasic - Kommentare überarbeiten, fehlercode überarbeiten
+    Rasic - Kommentare überarbeiten, code überarbeiten
     
 
 ReadMe - 
