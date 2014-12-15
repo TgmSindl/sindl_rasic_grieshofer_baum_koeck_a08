@@ -1,20 +1,15 @@
 package sindl_rasic_grieshofer_baum_koeck_a08;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
+import java.awt.*;
+import javax.swing.*;
 
 /**
- * Panel Klasse, hier werden die Buttons erstellt und dem Panel hinzugefügt.
- * 
- * @author Jakob Grieshofer, David Sindl
+ * Panel Klasse, hier werden die Buttons erstellt und dem Panel hinzugefÃ¼gt.
+ * @author Jakob Grieshofer, David Sindl, Rasic Benjamin
+ * @version 1.0
  */
 public class MyPanel extends JPanel{
-
+	
 	private MyControl control;
     private JToggleButton[][] buttons;
     private JButton restart;
@@ -22,7 +17,7 @@ public class MyPanel extends JPanel{
 
     /**
      * Konstruktor
-     * Panels und Buttons werden erstellt und dem Hauptpanel hinzugefügt.
+     * Panels und Buttons werden erstellt und dem Hauptpanel hinzugefÃ¼gt.
      * @param control
      */
     public MyPanel(MyControl control) {
@@ -41,21 +36,31 @@ public class MyPanel extends JPanel{
                 temp = new JToggleButton();
                 temp.addActionListener(control);
                 temp.setBackground(Color.black);                
-                panel1.add(temp);   //wird dem Panel hinzugefügt
+                panel1.add(temp);   //wird dem Panel hinzugefÃ¼gt
                 buttons[i][j]=temp; //in Array speichern fuer Berechnungen
             }
         }
-
-		int r =(int) (buttons.length*Math.random());
-		int a =(int) (buttons.length*Math.random());
-		buttons[r][a].setSelected(true); //Es wird ein zufaelliges Feld aktiviert
-		
+        
+        lightButtons();
+       
         this.setLayout(new BorderLayout());
         this.add(panel1, BorderLayout.CENTER);
         this.add(restart, BorderLayout.SOUTH);
     }
 
     /**
+     * Aktiviert 1-3 Lichter per zufall welche dann wieder ausgeschaltet werden mÃ¼ssen
+     */
+    public void lightButtons(){
+    	 int rr = (int)(Math.random()*3+1);
+         for(int y=0;y<rr;y++){
+         	int r =(int) (buttons.length*Math.random());
+         	int a =(int) (buttons.length*Math.random());
+         	buttons[r][a].setSelected(true); 
+         }
+    }
+    
+    	/**
 	 * @return the restart
 	 */
 	public JButton getRestart() {
