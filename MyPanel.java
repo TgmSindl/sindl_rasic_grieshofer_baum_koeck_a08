@@ -52,7 +52,7 @@ public class MyPanel extends JPanel{
      * Aktiviert 1-3 Lichter per zufall welche dann wieder ausgeschaltet werden müssen
      */
     public void lightButtons(){
-    	 int rr = (int)(Math.random()*3+1);
+    	 int rr = (int)(Math.random()*6+1);
          for(int y=0;y<rr;y++){
          	int r =(int) (buttons.length*Math.random());
          	int a =(int) (buttons.length*Math.random());
