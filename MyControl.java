@@ -1,14 +1,13 @@
 package sindl_rasic_grieshofer_baum_koeck_a08;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JToggleButton;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
- * Controller Klasse zum Verbinden der einzelnen Klassen. Enth�lt den ActionListener.
- * @author Jakob Grieshofer, David Sindl
- *
+ * Controller Klasse zum Verbinden der einzelnen Klassen. Enthält den ActionListener.
+ * Startet das Programm.
+ * @author Jakob Grieshofer, David Sindl, Rasic Benjamin
+ * @version 1.0
  */
 public class MyControl implements ActionListener{
 	private MyPanel panel;
@@ -16,7 +15,7 @@ public class MyControl implements ActionListener{
 
 	/**
 	 * Konstruktor
-	 * Es wird ein neues panel-, und frame Objekt erzeugt.
+	 * Erzeugt auf aufruf Frame und Panel
 	 */
 	public MyControl(){
 		panel = new MyPanel(this);
@@ -24,25 +23,23 @@ public class MyControl implements ActionListener{
 	}	
 	/**
 	 * ActionListener
-	 * Enth�lt die Spiellogik.
-	 * 
+	 * Enthält die Spiellogik.
 	 * @param ActionEvent e
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e){
 		Object source = e.getSource();
-
+			/* Wenn der Restart Button gedrückt wird sollen alle Buttons deaktiviert
+			 * und danach wieder eine zufällige Anzahl angeschalten werden */
 		if(source.equals(panel.getRestart())){	
 			for (int i = 0; i < panel.getButtons().length; i++) {    
 				for (int j = 0; j < panel.getButtons()[i].length; j++) {
 					panel.getButtons()[i][j].setSelected(false);
 				}
 			}
-			int r =(int) (panel.getButtons().length*Math.random());
-			int a =(int) (panel.getButtons().length*Math.random());
-			panel.getButtons()[r][a].setSelected(true);
+			panel.lightButtons();
 
-			
+			/* Was passieren soll wen ein SpielButton gedrückt wird */
 		}else if(source instanceof JToggleButton){
 			int[] pos = findButton((JToggleButton) source);
 			if(pos==null){
@@ -51,7 +48,8 @@ public class MyControl implements ActionListener{
 			}
 			int y = pos[0];
 			int x = pos[1];
-
+			
+			/* Aktiviert die 4 Buttons die im Raster an den angeklickten Button anliegen */
 			if(x>0){
 				toggle(panel.getButtons()[y][x-1]);
 			}
@@ -66,6 +64,12 @@ public class MyControl implements ActionListener{
 			}
 		}
 	}
+	
+	/**
+	 * Findet Button 
+	 * @param button
+	 * @return
+	 */
 	private int[] findButton(JToggleButton button){
 		for (int i = 0; i < panel.getButtons().length; i++) {
 			for (int j = 0; j < panel.getButtons()[i].length; j++) {
@@ -76,6 +80,7 @@ public class MyControl implements ActionListener{
 		}        
 		return null;
 	}    
+	
 	/**
 	 * Aendert den Zustand des Buttons auf das Gegenteil
 	 * @param button 
@@ -83,6 +88,13 @@ public class MyControl implements ActionListener{
 	private void toggle(JToggleButton button){
 		button.setSelected(!button.isSelected());
 	}
+	
+	/**
+	 * Startet das Programm
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		new MyControl();
+	}
 }
-
 
