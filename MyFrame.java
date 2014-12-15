@@ -2,12 +2,13 @@ package sindl_rasic_grieshofer_baum_koeck_a08;
 
 import javax.swing.JFrame;
 /**
- * Frame Klasse
+ * Seztet den Frame für das Programm.
  * @author Jakob Grieshofer
+ * @version 1.0
  */
 public class MyFrame extends JFrame {  
     /**
-     * Der Konstruktor
+     * Standart-Konstruktor
      * @param panel 
      */
     public MyFrame(MyPanel panel){
